@@ -24,7 +24,7 @@ sudo apt-get install redis-server
 
 cd wfc-candy
 
-5 npm update
+5 npm install
 
 6 npm run start
 
