@@ -1,4 +1,4 @@
-基础环境为ubuntu nodev4以上
+基础环境为ubuntu nodejs v4以上
 
 1 安装forever
 sudo npm install forever -g
