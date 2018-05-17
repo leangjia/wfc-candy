@@ -8,7 +8,7 @@ var redism=require("redis");
 var candytimeout =3600;
 var maxcandy=1;
 var maxcandyVal=2;
-var serport=8089;
+var serport=8081;
 var client = new bitcoin.Client({
   host: 'localhost',
   port: 9665,
