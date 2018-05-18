@@ -28,7 +28,7 @@ cd wfc-candy
 
 5 npm install
 
-6 npm run start
+6 npm run test
 
 7 访问 http://localhost:8089 就可以体验发糖果了
 
