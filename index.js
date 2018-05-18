@@ -6,9 +6,9 @@ var StringBuffer = require("stringbuffer");
 var redism=require("redis");
 //var candytimeout =86400;
 var candytimeout =3600;
-var maxcandy=1;
+var maxcandy=1000;
 var maxcandyVal=2;
-var serport=8081;
+var serport=8089;
 var client = new bitcoin.Client({
   host: 'localhost',
   port: 9665,
@@ -55,6 +55,17 @@ redis.get([wfcaddr],function(error,val){
                       redis.llen("txs:"+wfcaddr,function(err,len){
                             console.log("txs:"+wfcaddr+"="+len);
                             if(len<maxcandy){
+                              	    redis.rpush("txlist", wfcaddr+":"+txval,function(error){
+		                         console.log("err="+error);
+		                    });
+		                    console.log('redis.set :',wfcaddr);
+                                    
+			            redis.set([wfcaddr,txval,'EX',candytimeout],function(error){
+		                         console.log("err="+error);
+		                         redis.quit();
+		                    });
+                                    res.send('ok:' + '糖果发送成功5分钟之内转帐');
+                              /*
 		              client.sendToAddress(wfcaddr,txval,function(err, txid, resHeaders) {
 		                 if (err) return console.log(err);
 		                    console.log('redis.rpush txid:', txid);
@@ -67,7 +78,7 @@ redis.get([wfcaddr],function(error,val){
 		                         redis.quit();
 		                    });
                                     res.send('ok:' + '糖果发送成功');
-		              });
+		              });*/
                             }else{
                                res.send('error:领取总次数超过:'+maxcandy);
                                console.log("领取总次数超过:"+maxcandy);
