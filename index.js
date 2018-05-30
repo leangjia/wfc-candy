@@ -7,8 +7,8 @@ var redism = require("redis");
 /*******rate limit  *****/
 var RateLimit = require('express-rate-limit');
 var limiter = new RateLimit({
-  windowMs: 60 * 1000, // 1 minutes
-  max: 1, // limit each IP to 1 requests per windowMs
+  windowMs: 60 * 60 * 1000, // 60 minutes
+  max: 30, // limit each IP to 30 requests per windowMs
   delayMs: 0, // disable delaying - full speed until the max limit is reached
   onLimitReached: function(req, res, options){
     options.message = 'error:too many request,try later';
