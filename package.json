@@ -13,6 +13,7 @@
   "dependencies": {
     "bitcoin": "^3.0.1",
     "express": "^4.16.3",
+    "express-rate-limit": "^2.11.0",
     "redis": "^2.8.0",
     "stringbuffer": "^1.0.0"
   }
