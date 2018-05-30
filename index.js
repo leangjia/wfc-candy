@@ -22,7 +22,7 @@ var maxcandy = 1000;
 var maxcandyVal = 2;
 var serport = 8089;
 var client = new bitcoin.Client({
-  host: '192.168.1.13',
+  host: 'localhost',
   port: 9665,
   user: 'test',
   pass: 'admin',
