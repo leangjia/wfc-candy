@@ -8,10 +8,13 @@ var redism = require("redis");
 var RateLimit = require('express-rate-limit');
 var limiter = new RateLimit({
   windowMs: 60 * 60 * 1000, // 60 minutes
-  max: 3, // limit each IP to 100 requests per windowMs
+  max: 30, // limit each IP to 30 requests per windowMs
   delayMs: 0, // disable delaying - full speed until the max limit is reached
   onLimitReached: function(req, res, options){
     options.message = 'error:too many request,try later';
+  },
+  handler: function(req, res, next){
+    res.end('error: 您领取的速度太快了~')
   }
 });
 app.use('/getcandy/', limiter); //affect api
@@ -46,7 +49,11 @@ app.get('/getcandy/:addr', function (req, res) {
 
   var wfcaddr = req.params.addr
   client.validateAddress(wfcaddr, function (err, txid, resHeaders) {
-    if (err) return console.log(err);
+    if (err) {
+      console.log(err);
+      res.end('error: 服务器节点异常')
+      return;
+    }
     var randomNum = Math.random() * maxcandyVal;
     console.log('randomNum:', randomNum);
     var txval = randomNum.toFixed(2);
