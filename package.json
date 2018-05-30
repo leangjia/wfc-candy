@@ -4,7 +4,7 @@
   "description": "wfc-candy",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
+    "test": "./runall.sh",
     "start": "forever start index.js",
     "stop": "forever stop index.js"
   },
